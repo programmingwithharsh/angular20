@@ -1,2 +1,27 @@
 <p>product-list works!</p>
 {{ pageTitle }} <!-- Expression -->
+
+<table class="table table-hover table-striped" *ngIf="products && products.length">
+    <thead>
+        <tr>
+            <th></th>
+            <th>Product Name</th>
+            <th>Product Code</th>
+            <th>Release Date</th>
+            <th>Description</th>
+            <th>Price</th>
+            <th>Rating</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let product of products">
+            <td><img width="50" height="50" [src]="product.imageUrl" /> </td>
+            <td>{{ product.productName}}</td>
+            <td>{{ product.productCode}}</td>
+            <td>{{ product.releaseDate}}</td>
+            <td>{{ product.description}}</td>
+            <td>{{ product.price}}</td>
+            <td>{{ product.starRating}}</td>
+        </tr>
+    </tbody>
+</table>
