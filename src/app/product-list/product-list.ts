@@ -1,14 +1,18 @@
 import { Component } from '@angular/core';
-import { NgIf, NgFor } from '@angular/common';
+import { NgIf, NgFor, UpperCasePipe, LowerCasePipe } from '@angular/common';
+import { FormsModule } from '@angular/forms';
+import { ConverToSpacesPipe } from '../conver-to-spaces-pipe';
 
 @Component({
   selector: 'app-product-list',
-  imports: [NgIf, NgFor],
+  imports: [NgIf, NgFor, FormsModule, UpperCasePipe, LowerCasePipe, ConverToSpacesPipe],
   templateUrl: './product-list.html',
   styleUrl: './product-list.scss',
 })
 export class ProductList {
   pageTitle = "Product List"; // property
+  listFilter: string = "cart";
+  showImage: boolean = false;
 
   products = [
     {
@@ -62,4 +66,9 @@ export class ProductList {
       "imageUrl": "https://openclipart.org/image/300px/svg_to_png/120337/xbox-controller_01.png"
     }
   ];
+
+  toggleImage(): void {
+    debugger;
+    this.showImage = !this.showImage;
+  }
 }
