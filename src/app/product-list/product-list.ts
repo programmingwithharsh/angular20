@@ -7,5 +7,5 @@ import { Component } from '@angular/core';
   styleUrl: './product-list.scss',
 })
 export class ProductList {
-
+  pageTitle = "Product List"; // property
 }
