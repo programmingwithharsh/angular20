@@ -3,10 +3,11 @@ import { NgIf, NgFor, UpperCasePipe, LowerCasePipe } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { ConverToSpacesPipe } from '../conver-to-spaces-pipe';
 import { ProductService } from '../product-service';
+import { Star } from '../star/star';
 
 @Component({
   selector: 'app-product-list',
-  imports: [NgIf, NgFor, FormsModule, UpperCasePipe, LowerCasePipe, ConverToSpacesPipe],
+  imports: [NgIf, NgFor, FormsModule, UpperCasePipe, LowerCasePipe, ConverToSpacesPipe, Star],
   templateUrl: './product-list.html',
   styleUrl: './product-list.scss',
 })
