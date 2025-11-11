@@ -31,4 +31,9 @@ export class ProductList implements OnInit {
     this.products = this.productServ.getProducts(); // calling getProducts method
     console.log("ngOnInit");
   }
+
+  onRatingClicked(message: string) {
+    debugger
+    this.pageTitle = message;
+  }
 }

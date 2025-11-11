@@ -1,6 +1,6 @@
 <div class="row">
     <div><strong>Expression Example:</strong> 2+2 is {{ 2+ 2}} <!-- Expression Example --></div>
-    {{ pageTitle }} <!-- Interpolation -->
+    <h1>{{ pageTitle }} </h1><!-- Interpolation -->
     <div>
         <input type="text" class="form-control" [(ngModel)]="listFilter"> <!-- Two way binding -->
     </div>
@@ -30,7 +30,7 @@
             <td>{{ product.releaseDate}}</td>
             <td>{{ product.description | lowercase}}</td>
             <td>{{ product.price}}</td>
-            <td><app-star [rating]="product.starRating"></app-star></td>
+            <td><app-star [rating]="product.starRating" (ratingClicked)="onRatingClicked($event)"></app-star></td>
         </tr>
     </tbody>
 </table>
