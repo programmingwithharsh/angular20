@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-welcome', // name of the component
@@ -8,4 +9,11 @@ import { Component } from '@angular/core';
 })
 export class Welcome {
 
+  constructor(private router: Router) {
+
+  }
+
+  goToProducts() {
+    this.router.navigate(['/products']);
+  }
 }

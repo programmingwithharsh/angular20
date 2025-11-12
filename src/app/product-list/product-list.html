@@ -25,7 +25,7 @@
         <tr *ngFor="let product of products">
             <td><img *ngIf="showImage" width="50" height="50" [src]="product.imageUrl" /> </td>
             <!-- Property Binding -->
-            <td>{{ product.productName | uppercase}}</td>
+            <td><a [routerLink]="['/products', product.productId]">{{ product.productName | uppercase}}</a></td>
             <td>{{ product.productCode | converToSpaces: '-'}}</td>
             <td>{{ product.releaseDate}}</td>
             <td>{{ product.description | lowercase}}</td>
