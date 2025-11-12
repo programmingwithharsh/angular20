@@ -1,0 +1,66 @@
+<p>add-product works!</p>
+<div class="col-6">
+    <form [formGroup]="productForm" (ngSubmit)="onSubmit()">
+        <div class="form-group">
+            <label>Product Name:</label>
+            <input type="text" class="form-control" formControlName="productName">
+            <small *ngIf="productForm.get('productName')?.invalid && productForm.get('productName')?.touched">
+                * Required
+            </small>
+        </div>
+        <div class="form-group">
+            <label>Product Code:</label>
+            <input type="text" class="form-control" formControlName="productCode">
+            <small *ngIf="productForm.get('productCode')?.invalid && productForm.get('productCode')?.touched">
+                * Required
+            </small>
+        </div>
+        <div class="form-group">
+            <label>Release Date:</label>
+            <input type="date" class="form-control" formControlName="releaseDate">
+        </div>
+        <div class="form-group">
+            <label>Description:</label>
+            <input type="text" class="form-control" formControlName="description">
+        </div>
+        <div class="form-group">
+            <label>Price:</label>
+            <input type="text" class="form-control" formControlName="price">
+        </div>
+        <div class="form-group">
+            <label>Rating:</label>
+            <input type="text" class="form-control" formControlName="starRating">
+        </div>
+        <div class="form-group">
+            <label>Url:</label>
+            <input type="text" class="form-control" formControlName="imageUrl">
+        </div>
+        <button type="submit" [disabled]="productForm.invalid" class="btn btn-primary mt-2">Add Product</button>
+    </form>
+</div>
+
+<table class="table table-hover table-striped" *ngIf="products && products.length">
+    <thead>
+        <tr>
+            <th></th>
+            <th>Product Name</th>
+            <th>Product Code</th>
+            <th>Release Date</th>
+            <th>Description</th>
+            <th>Price</th>
+            <th>Rating</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let product of products">
+            <td><img width="50" height="50" [src]="product.imageUrl" /> </td>
+            <!-- Property Binding -->
+            <td>{{ product.productName }}</td>
+            <td>{{ product.productCode }}</td>
+            <td>{{ product.releaseDate}}</td>
+            <td>{{ product.description }}</td>
+            <td>{{ product.price}}</td>
+            <td>{{product.starRating }}</td>
+        </tr>
+    </tbody>
+</table>
