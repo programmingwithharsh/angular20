@@ -35,7 +35,6 @@ export class UserList implements OnInit, AfterViewInit {
   }
 
   ngAfterViewInit(): void {
-    debugger
     this.deleteModal = new Modal(this.deleteModalRef.nativeElement);
   }
 
@@ -57,7 +56,6 @@ export class UserList implements OnInit, AfterViewInit {
     const userData: User = this.userForm.value;
 
     if (this.isEditMode && this.editUserId) {
-      debugger
       this.userService.updateUser(this.editUserId, userData).subscribe({
         next: () => {
           this.resetForm();
@@ -67,7 +65,6 @@ export class UserList implements OnInit, AfterViewInit {
         error: (err) => console.error('Error updating user:', err),
       });
     } else {
-      debugger
       this.userService.createUser(userData).subscribe({
         next: () => {
           this.resetForm();
@@ -94,14 +91,12 @@ export class UserList implements OnInit, AfterViewInit {
   openDeleteModal(id?: string) {
     if (!id) return;
     this.userToDeleteId = id;
-    debugger
     this.deleteModal.show(); // show modal
   }
 
   // Confirm Delete
   confirmDelete() {
     if (!this.userToDeleteId) return;
-    debugger
     this.userService.deleteUser(this.userToDeleteId).subscribe({
       next: () => {
         this.loadUsers();

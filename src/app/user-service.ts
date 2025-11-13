@@ -26,7 +26,6 @@ export class UserService {
   }
 
   createUser(user: User): Observable<User> {
-    debugger
     return this.http.post<User>(this.apiUrl, user);
   }
 

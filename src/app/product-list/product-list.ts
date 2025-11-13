@@ -16,6 +16,7 @@ export class ProductList implements OnInit {
   pageTitle = "Product List"; // property
   listFilter: string = "cart";
   showImage: boolean = false;
+  errorMessage = '';
 
   products: any[] = []; // any data type
 
@@ -24,17 +25,20 @@ export class ProductList implements OnInit {
   }
 
   toggleImage(): void {
-    debugger;
     this.showImage = !this.showImage;
   }
 
   ngOnInit(): void {
-    this.products = this.productServ.getProducts(); // calling getProducts method
+    this.productServ.getProducts().subscribe({
+      next: products => {
+        this.products = products;
+      },
+      error: err => this.errorMessage = err
+    })
     console.log("ngOnInit");
   }
 
   onRatingClicked(message: string) {
-    debugger
     this.pageTitle = message;
   }
 }

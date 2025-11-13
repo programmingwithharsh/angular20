@@ -14,7 +14,6 @@ export class Star implements OnChanges {
     console.log("Star component rating", this.rating);
   }
   onClick() {
-    debugger
     this.ratingClicked.emit(`The rating ${this.rating} was clicked!`); // Emits an event
   }
 }
