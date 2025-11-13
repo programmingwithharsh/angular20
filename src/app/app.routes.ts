@@ -1,20 +1,15 @@
 import { Routes } from '@angular/router';
 import { Welcome } from './welcome/welcome';
-import { ProductList } from './product-list/product-list';
-import { About } from './about/about';
-import { UserList } from './user-list/user-list';
 import { Title } from './title/title';
-import { AddProduct } from './add-product/add-product';
-import { ProductDetail } from './product-detail/product-detail';
-import { productDetailGuard } from './product-detail-guard';
 
 export const routes: Routes = [
     { path: 'welcome', component: Welcome },
     { path: '', redirectTo: 'welcome', pathMatch: 'full' },
-    { path: 'products', component: ProductList },
-    { path: 'products/:id', canActivate: [productDetailGuard], component: ProductDetail }, // Dynamic url
-    { path: 'about', component: About },
-    { path: 'users', component: UserList },
+    {
+        path: 'products',
+        loadChildren: () => import('./product.routes').then(r => r.PROUDCT_ROUTES)
+    },
+    { path: 'about', loadComponent: () => import('./about/about').then(r => r.About) },
+    { path: 'users', loadComponent: () => import('./user-list/user-list').then(r => r.UserList) },
     { path: 'title', component: Title },
-    { path: 'addproduct', component: AddProduct }
 ];
