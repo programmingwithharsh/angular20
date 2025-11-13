@@ -24,6 +24,10 @@ export class ProductDetail implements OnInit {
   }
 
   ngOnInit(): void {
+    this.route.queryParamMap.subscribe(q => {
+      console.log(q);
+    });
+    
     const id = Number(this.route.snapshot.paramMap.get('id'));
     if (id) {
       this.getProduct(id);
