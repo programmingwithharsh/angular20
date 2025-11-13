@@ -1,4 +1,5 @@
 <div class="row mt-2">
+    <div>Title is {{ title() }}</div>
     <div>
         <a [routerLink]="['/products/1']" [queryParams]="{ page: 1, sort: 'asc'}">Pass Query Params</a>
     </div>

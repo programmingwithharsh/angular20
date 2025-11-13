@@ -1,9 +1,11 @@
+<button class="btn btn-danger" (click)="generateError()">Error</button>
 <div class="mt-2" [ngStyle]="{ color: price > 100 ? 'red': 'green'}">
   {{ price }}
 </div>
 <div>
   <h1 appHighlight appHighlightBc="blue">Programming with Harsh</h1>
-  <h1 appHighlight [appHighlightBc]="'orange'" highlightTextColor="white" hightlightBorder="2px solid gray">Programming with
+  <h1 appHighlight [appHighlightBc]="'orange'" highlightTextColor="white" hightlightBorder="2px solid gray">Programming
+    with
     Harsh</h1>
 </div>
 <p>welcome works!</p>

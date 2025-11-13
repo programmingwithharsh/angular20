@@ -3,6 +3,7 @@ import { UserService, User } from '../user-service';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { NgFor, NgIf, NgClass, JsonPipe } from '@angular/common';
 import Modal from 'bootstrap/js/dist/modal';
+import { Counter } from '../counter';
 
 @Component({
   selector: 'app-user-list',
@@ -22,7 +23,7 @@ export class UserList implements OnInit, AfterViewInit {
   private deleteModal!: Modal;
   userToDeleteId: string | null = null;
 
-  constructor(private userService: UserService, private fb: FormBuilder) { }
+  constructor(private userService: UserService, private fb: FormBuilder, public cs: Counter) { }
 
   ngOnInit(): void {
     this.loadUsers();

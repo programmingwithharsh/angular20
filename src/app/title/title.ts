@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Counter } from '../counter';
 
 @Component({
   selector: 'app-title',
@@ -7,5 +8,12 @@ import { Component } from '@angular/core';
   styleUrl: './title.scss',
 })
 export class Title {
+  constructor(private counterService: Counter) {
+
+  }
+
+  add() {
+    this.counterService.increase();
+  }
 
 }

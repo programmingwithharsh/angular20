@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, signal } from '@angular/core';
 import { NgIf, NgFor, UpperCasePipe, LowerCasePipe } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { ConverToSpacesPipe } from '../conver-to-spaces-pipe';
@@ -17,6 +17,7 @@ export class ProductList implements OnInit {
   listFilter: string = "cart";
   showImage: boolean = false;
   errorMessage = '';
+  title = signal('dashboard');
 
   products: any[] = []; // any data type
 
