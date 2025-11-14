@@ -2,9 +2,10 @@ import { Routes } from '@angular/router';
 import { Welcome } from './welcome/welcome';
 import { Title } from './title/title';
 import { CategoryList } from './categories/category-list/category-list';
+import { Count } from './count/count';
 
 export const routes: Routes = [
-    { path: 'welcome', component: Welcome },
+    { path: 'welcome', component: Count },
     { path: '', redirectTo: 'welcome', pathMatch: 'full' },
     {
         path: 'products',
