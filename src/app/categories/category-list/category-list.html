@@ -1,0 +1,11 @@
+<p>category-list works!</p>
+
+<div *ngIf="loading$ | async">
+    Loading ...
+</div>
+
+<ul>
+    <li *ngFor="let item of (categories$ |async)">
+        {{ item.id}} - {{item.name}}
+    </li>
+</ul>
