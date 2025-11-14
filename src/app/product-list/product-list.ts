@@ -1,14 +1,15 @@
 import { Component, OnInit, signal } from '@angular/core';
-import { NgIf, NgFor, UpperCasePipe, LowerCasePipe } from '@angular/common';
+import { NgIf, NgFor, UpperCasePipe, LowerCasePipe, AsyncPipe } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { ConverToSpacesPipe } from '../conver-to-spaces-pipe';
 import { ProductService } from '../product-service';
 import { Star } from '../star/star';
 import { RouterLink } from "@angular/router";
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-product-list',
-  imports: [NgIf, NgFor, FormsModule, UpperCasePipe, LowerCasePipe, ConverToSpacesPipe, Star, RouterLink],
+  imports: [NgIf, NgFor, FormsModule, UpperCasePipe, LowerCasePipe, ConverToSpacesPipe, Star, RouterLink, AsyncPipe],
   templateUrl: './product-list.html',
   styleUrl: './product-list.scss',
 })
@@ -19,10 +20,12 @@ export class ProductList implements OnInit {
   errorMessage = '';
   title = signal('dashboard');
 
-  products: any[] = []; // any data type
+  // products: any[] = []; // any data type
+  product$: Observable<any[]>;
 
   constructor(private productServ: ProductService) { // calling service
     console.log("constructor");
+    this.product$ = this.productServ.getProducts();
   }
 
   toggleImage(): void {
@@ -30,6 +33,7 @@ export class ProductList implements OnInit {
   }
 
   ngOnInit(): void {
+    /*
     this.productServ.getProducts().subscribe({
       next: products => {
         this.products = products;
@@ -37,6 +41,7 @@ export class ProductList implements OnInit {
       error: err => this.errorMessage = err
     })
     console.log("ngOnInit");
+    */
   }
 
   onRatingClicked(message: string) {

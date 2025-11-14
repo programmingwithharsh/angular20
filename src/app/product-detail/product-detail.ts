@@ -1,10 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { IProduct } from '../product';
 import { ProductService } from '../product-service';
 import { ConverToSpacesPipe } from '../conver-to-spaces-pipe';
 import { Star } from '../star/star';
 import { NgIf, LowerCasePipe, CurrencyPipe, JsonPipe } from '@angular/common';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-product-detail',
@@ -13,10 +14,11 @@ import { NgIf, LowerCasePipe, CurrencyPipe, JsonPipe } from '@angular/common';
   templateUrl: './product-detail.html',
   styleUrls: ['./product-detail.scss']
 })
-export class ProductDetail implements OnInit {
+export class ProductDetail implements OnInit, OnDestroy {
   pageTitle = 'Product Detail';
   errorMessage = '';
   product: IProduct | undefined;
+  sub!: Subscription;
 
   constructor(private route: ActivatedRoute,
     private router: Router,
@@ -24,10 +26,11 @@ export class ProductDetail implements OnInit {
   }
 
   ngOnInit(): void {
-    this.route.queryParamMap.subscribe(q => {
+    console.log('Product list component mounted');
+    this.sub = this.route.queryParamMap.subscribe(q => {
       console.log(q);
     });
-    
+
     const id = Number(this.route.snapshot.paramMap.get('id'));
     if (id) {
       this.getProduct(id);
@@ -35,7 +38,7 @@ export class ProductDetail implements OnInit {
   }
 
   getProduct(id: number): void {
-    this.productService.getProduct(id).subscribe({
+    this.sub = this.productService.getProduct(id).subscribe({
       next: product => this.product = product,
       error: err => this.errorMessage = err
     });
@@ -43,5 +46,10 @@ export class ProductDetail implements OnInit {
 
   onBack(): void {
     this.router.navigate(['/products']);
+  }
+
+  ngOnDestroy(): void {
+    this.sub.unsubscribe();
+    console.log('Product list component unmounted');
   }
 }
